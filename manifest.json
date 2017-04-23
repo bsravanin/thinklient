@@ -1,0 +1,17 @@
+{
+    "manifest_version": 2,
+    "name": "Thinklient",
+    "version": "0.0.1",
+    "description": "An open-source Google Chrome extension to nudge towards thoughtful and deliberate posting.",
+    "icons": {
+        "128": "icon128.png"
+    },
+    "homepage_url": "https://github.com/bsravanin/thinklient",
+    "content_scripts" : [
+        {
+            "matches" : ["*://*.facebook.com/*"],
+            "js" : ["content.js"],
+            "run_at": "document_idle"
+        }   
+    ]
+}
