@@ -1,0 +1,27 @@
+{
+  "name": "thinklient-chrome-extension",
+  "version": "0.0.1",
+  "description": "An open-source Google Chrome extension to nudge towards thoughtful and deliberate posting.",
+  "main": "index.js",
+  "scripts": {
+    "build": "./node_modules/.bin/webpack",
+    "watch": "./node_modules/.bin/webpack -w"
+  },
+  "author": "heitzmann.alex@gmail.com;bsravanin@gmail.com",
+  "license": "Apache 2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bsravanin/thinklient.git"
+  },
+  "dependencies": {
+    "jquery": "~3.2.1"
+  },
+  "devDependencies": {
+    "@types/chrome": "~0.0.46",
+    "@types/jquery": "~2.0.41",
+    "eslint": "^3.19.0",
+    "ts-loader": "~2.0.3",
+    "typescript": "~2.2.2",
+    "webpack": "~2.4.1"
+  }
+}
