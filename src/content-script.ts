@@ -1,2 +1,11 @@
+import {testLog} from './crud-filter/crud-filter'
 
-console.info("Think...");
+class Startup {
+    public static main(): number {
+        console.info("Think...")
+        testLog()
+        return 0;
+    }
+}
+
+Startup.main()

@@ -17,11 +17,11 @@
     "jquery": "~3.2.1"
   },
   "devDependencies": {
-    "@types/chrome": "~0.0.46",
-    "@types/jquery": "~2.0.41",
+    "@types/chrome": "^0.0.46",
+    "@types/jquery": "^2.0.41",
     "eslint": "^3.19.0",
-    "ts-loader": "~2.0.3",
-    "typescript": "~2.2.2",
-    "webpack": "~2.4.1"
+    "ts-loader": "^2.0.3",
+    "typescript": "^2.3",
+    "webpack": "^2.4.1"
   }
 }

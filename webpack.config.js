@@ -7,7 +7,7 @@ module.exports = {
     },
     output: {
         path: path.join(__dirname, 'dist/js'),
-        filename: '[name].js'
+        filename: 'content-script.js'
     },
     module: {
         loaders: [{
@@ -17,7 +17,7 @@ module.exports = {
         }]
     },
     resolve: {
-        extensions: ['.ts', '.tsx', '.js']
+        extensions: ['.ts', '.js', 'tsx']
     },
     plugins: [
 

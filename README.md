@@ -10,3 +10,4 @@ An open-source Google Chrome extension to nudge towards thoughtful and deliberat
 6. Enable "Developer mode".
 7. Click "Load unpacked extension".
 8. Navigate and select the dist directory of the cloned repo.
+9. Visit facebook.com and the contents of content-script should be run!
