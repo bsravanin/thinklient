@@ -5,8 +5,20 @@ class Startup {
     public static main(): number {
         console.info("Think...")
         testLog()
-        hideAllPosts()
-        encourageDiscard()
+
+        chrome.storage.sync.get({
+            filterProfanity: false,
+            encourageDiscard: false
+        }, function(items) {
+            if (items.filterProfanity) {
+                hideAllPosts()
+            }
+
+            if (items.encourageDiscard)  {
+                encourageDiscard()
+            }
+        });
+
         return 0;
     }
 }

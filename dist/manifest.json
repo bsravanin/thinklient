@@ -13,5 +13,12 @@
             "js" : ["js/content-script.js"],
             "run_at": "document_idle"
         }
+    ],
+    "options_ui": {
+        "page": "options/options.html",
+        "chrome_style": true
+    },
+    "permissions": [
+        "storage"
     ]
 }
