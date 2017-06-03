@@ -1,9 +1,6 @@
 import * as $ from 'jquery'
 
 const STORY_ID_PREFIX = 'hyperfeed_story_id_'
-export const testLog = () => {
-    console.info('This will filter out profane posts')
-}
 
 const hideStoriesIn = (root: JQuery) => {
     const stories = root.find(`div.fbUserContent`)
