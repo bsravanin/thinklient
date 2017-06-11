@@ -14,21 +14,11 @@ export const encourageDiscard = () => {
             dismissButton.click()
         }
 
-        const quotes: string[] = [
-            'Sometimes I find it sufficient to articulate and discard a thought without posting.',
-            'I do not mean everything I say. Why say it if I do not mean it?',
-            'My anger is not reason enough to speak unkindly on the internet.',
-            'Being mindful is a choice and takes effort.',
-            'My friends will read this. :)'
-        ]
-
         let observer = new MutationObserver(function () {
             const lfloat = postBox.getElementsByClassName('lfloat')[0]
             if (lfloat && lfloat.getElementsByTagName('button').length == 0) {
-                console.log('Attaching the discard button and quote to the post box.')
-                const quote = quotes[Math.floor(Math.random() * quotes.length)]
+                console.log('Attaching the discard button to the post box.')
                 lfloat.appendChild(btn)
-                lfloat.appendChild(document.createTextNode(quote))
             }
         })
 

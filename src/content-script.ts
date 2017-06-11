@@ -1,5 +1,6 @@
 import {hideAllPosts} from './crud-filter/crud-filter'
 import {encourageDiscard} from './encourage-discard/encourage-discard'
+import {updateQuote} from './random-quote/random-quote'
 
 class Startup {
     public static main(): number {
@@ -7,7 +8,8 @@ class Startup {
 
         chrome.storage.sync.get({
             filterProfanity: false,
-            encourageDiscard: false
+            encourageDiscard: false,
+            randomQuote: false
         }, function(items) {
             if (items.filterProfanity) {
                 hideAllPosts()
@@ -15,6 +17,10 @@ class Startup {
 
             if (items.encourageDiscard)  {
                 encourageDiscard()
+            }
+
+            if (items.randomQuote) {
+                updateQuote()
             }
         });
 
