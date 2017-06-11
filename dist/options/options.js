@@ -2,10 +2,12 @@ function save_options() {
     var filterProfanity = document.getElementById('crud-filter').checked
     var encourageDiscard = document.getElementById('encourage-discard').checked
     var randomQuote = document.getElementById('random-quote').checked
+    var undoPost = document.getElementById('undo-post').value
     chrome.storage.sync.set({
         filterProfanity: filterProfanity,
         encourageDiscard: encourageDiscard,
-        randomQuote: randomQuote
+        randomQuote: randomQuote,
+        undoPost: undoPost
     }, function() {
         var status = document.getElementById('status')
         status.textContent = 'Options saved.'
@@ -19,11 +21,13 @@ function restore_options() {
     chrome.storage.sync.get({
         filterProfanity: false,
         encourageDiscard: false,
-        randomQuote: false
+        randomQuote: false,
+        undoPost: 0
     }, function(items) {
         document.getElementById('crud-filter').checked = items.filterProfanity
         document.getElementById('encourage-discard').checked = items.encourageDiscard
         document.getElementById('random-quote').checked = items.randomQuote
+        document.getElementById('undo-post').value = items.undoPost
     });
 }
 
