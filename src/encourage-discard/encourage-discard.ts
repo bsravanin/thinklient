@@ -1,6 +1,8 @@
+import {getPostBoxes} from '../dom-helper/dom-helper'
+
 export const encourageDiscard = () => {
     // Find the dialog box used to create posts.
-    const postBoxes = document.querySelectorAll('[aria-label="Create a Post"]')
+    const postBoxes = getPostBoxes()
     if (postBoxes.length != 1) {
         console.error('DOM parsing failed. Could not locate the post box.')
         console.error(postBoxes)

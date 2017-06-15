@@ -1,4 +1,4 @@
-import * as $ from 'jquery'
+import {getNewsFeed} from '../dom-helper/dom-helper'
 
 const STORY_ID_PREFIX = 'hyperfeed_story_id_'
 
@@ -8,7 +8,7 @@ const hideStoriesIn = (root: JQuery) => {
 }
 
 export const hideAllPosts = () => {
-    const newsFeed = $("div[id^='feed_stream_']")
+    const newsFeed = getNewsFeed()
     console.info(newsFeed)
 
     const observer = new MutationObserver(function(mutations, observer) {

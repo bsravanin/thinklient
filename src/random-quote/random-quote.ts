@@ -1,4 +1,4 @@
-import * as $ from 'jquery'
+import {getPlaceHolders, getNewsFeed} from '../dom-helper/dom-helper'
 
 const quotes: string[] = [
     'Sometimes I find it sufficient to articulate and discard a thought without posting.',
@@ -9,7 +9,7 @@ const quotes: string[] = [
 ]
 
 const updateQuoteInPlaceHolders = () => {
-    const placeHolders = document.querySelectorAll('[id^="placeholder"]')
+    const placeHolders = getPlaceHolders()
     if (placeHolders.length == 0) {
         console.error('No placeholder elements found. Cannot show a random quote...')
         return
@@ -36,7 +36,7 @@ const updateQuoteInPlaceHolders = () => {
 }
 
 export const updateQuote = () => {
-    const newsFeed = $("div[id^='feed_stream_']")
+    const newsFeed = getNewsFeed()
     updateQuoteInPlaceHolders()
 
     let observer = new MutationObserver(function () {
