@@ -1,6 +1,6 @@
 import {getPostBoxes} from '../dom-helper/dom-helper'
 
-export const encourageDiscard = () => {
+export const enableDiscard = () => {
     // Find the dialog box used to create posts.
     const postBoxes = getPostBoxes()
     if (postBoxes.length != 1) {

@@ -1,3 +1,3 @@
-export const undoPost = () => {
-    console.log('Undoing posts has been enabled with %s seconds.', 'some')
+export const enableUndoPost = (timeout: number) => {
+    console.log('Undoing posts has been enabled with %s seconds.', timeout)
 }

@@ -1,34 +1,32 @@
 import {hideAllPosts} from './crud-filter/crud-filter'
-import {encourageDiscard} from './encourage-discard/encourage-discard'
+import {enableDiscard} from './encourage-discard/encourage-discard'
 import {updateQuote} from './random-quote/random-quote'
-import {undoPost} from './undo-post/undo-post'
+import {enableUndoPost} from './undo-post/undo-post'
+import {getSavedConfig} from './options/options'
 
 class Startup {
     public static main(): number {
         console.info("Think...")
 
-        chrome.storage.sync.get({
-            filterProfanity: false,
-            encourageDiscard: false,
-            randomQuote: false,
-            undoPost: 0
-        }, function(items) {
-            if (items.filterProfanity) {
+        getSavedConfig().then(config => {
+            const features = config.features
+            const {crudFilter, encourageDiscard, randomQuotes, undoPost} = features
+            if (crudFilter.isEnabled) {
                 hideAllPosts()
             }
 
-            if (items.encourageDiscard)  {
-                encourageDiscard()
+            if (encourageDiscard.isEnabled)  {
+                enableDiscard()
             }
 
-            if (items.randomQuote) {
+            if (randomQuotes.isEnabled) {
                 updateQuote()
             }
 
-            if (items.undoPost > 0) {
-                undoPost()
+            if (undoPost.isEnabled && undoPost.timeout > 0) {
+                enableUndoPost(undoPost.timeout)
             }
-        });
+        })
 
         return 0;
     }

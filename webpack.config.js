@@ -4,10 +4,11 @@ const path = require('path');
 module.exports = {
     entry: {
         content_script: path.join(__dirname, 'src/content-script.ts'),
+        options: path.join(__dirname, 'src/options/options.ts')
     },
     output: {
         path: path.join(__dirname, 'dist/js'),
-        filename: 'content-script.js'
+        filename: "[name].bundle.js",
     },
     module: {
         loaders: [{

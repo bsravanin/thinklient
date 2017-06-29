@@ -10,7 +10,7 @@
     "content_scripts" : [
         {
             "matches" : ["*://*.facebook.com/*"],
-            "js" : ["js/content-script.js"],
+            "js" : ["js/content_script.bundle.js"],
             "run_at": "document_idle"
         }
     ],

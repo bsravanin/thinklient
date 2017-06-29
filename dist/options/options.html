@@ -44,6 +44,9 @@
 
 </style>
 
+<script src="../js/options.bundle.js"></script>
+
+
 <body>
     <h1>Features</h1>
     <div class="feature">
@@ -57,26 +60,25 @@
             <input type="checkbox" id="crud-filter"> Filter out profane posts in my news feed.<br/>
         </label>
         <h2>Language Blacklist</h2>
-        <textarea id='crud-blacklist'></textarea>
+        <textarea id='crud-filter-blacklist-terms'></textarea>
     </div>
 
     <div class="feature">
         <label>
-            <input type="checkbox" id="random-quote"> Display a random quote encouraging me to post thoughtfully.<br/>
+            <input type="checkbox" id="random-quotes"> Display a random quote encouraging me to post thoughtfully.<br/>
         </label>
     </div>
 
     <div class="feature">
         <label>
-            Enable me to undo posts with a cancellation period of
-            <input type="number" id="undo-post" value="0" min="0" style="width: 45px"> seconds.<br/>
+            <input type="checkbox" id="undo-post"> Enable me to undo posts within<br/>
+            <input type="number" id="undo-post-timeout" min="0" style="width: 45px"> seconds.<br/>
         </label>
     </div>
 
     <div class="actions">
-        <button id="save">Save</button>
+        <button onclick="saveConfig()" id="save-btn">Save</button>
     </div>
     <div id="status"></div>
 </body>
-<script src="options.js"></script>
 </html>
