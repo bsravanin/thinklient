@@ -15,8 +15,8 @@ An open-source Google Chrome extension to nudge towards thoughtful and deliberat
 # Test
 1. Enable all features before testing.
 1. Test encourage discard
-    1. Verify that the 'Post' dialog has a rust-colored 'Dismiss' button properly aligned to the left of the 'Post' button.
-    1. Verify that clicking 'Dismiss' closes the dialog.
+    1. Verify that the 'Post' dialog has a rust-colored 'Discard' button properly aligned to the left of the 'Post' button.
+    1. Verify that clicking 'Discard' closes the dialog.
 1. Test random quotes
     1. Verify that a quote appears in place of "What's on your mind, <HAL>?" in the 'Post' box.
     1. Verify that the new 'Post' box created after posting something contains another quote (not necessarily a different one).

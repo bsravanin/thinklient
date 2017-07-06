@@ -7,7 +7,6 @@ export const enableDiscard = () => {
         console.error('DOM parsing failed. Could not locate the post box.')
         console.error(postBoxes)
     } else {
-        const postBox = postBoxes[0]
         const discard_btn = document.createElement('BUTTON')
         discard_btn.id = 'thinklient-discard'
         discard_btn.textContent = 'Discard'
@@ -24,6 +23,8 @@ export const enableDiscard = () => {
         discard_div.appendChild(document.createElement('span'))
         discard_div.appendChild(discard_btn)
         discard_div.style.cssFloat = 'left'
+
+        const postBox = postBoxes[0]
 
         let observer = new MutationObserver(function () {
             const rfloat = postBox.getElementsByClassName('rfloat')[0]
