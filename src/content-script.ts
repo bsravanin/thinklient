@@ -12,7 +12,7 @@ class Startup {
             const features = config.features
             const {crudFilter, encourageDiscard, randomQuotes, undoPost} = features
             if (crudFilter.isEnabled) {
-                hideAllPosts()
+                hideAllPosts(crudFilter.blacklist)
             }
 
             if (encourageDiscard.isEnabled)  {

@@ -1,3 +1,4 @@
+import defaultBlacklist from './default-blacklist'
 
 const STORAGE_KEY: string = 'THINK_CONFIG'
 
@@ -24,7 +25,7 @@ const DEFAULT_CONFIG = {
     features: {
         crudFilter: {
             isEnabled: false,
-            blacklist: []
+            blacklist: defaultBlacklist
         },
         encourageDiscard: {
             isEnabled: false
