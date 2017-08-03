@@ -21,7 +21,7 @@ interface IThinkclientConfig {
     }
 }
 
-const DEFAULT_CONFIG = {
+const DEFAULT_CONFIG: IThinkclientConfig = {
     features: {
         crudFilter: {
             isEnabled: false,
@@ -98,6 +98,15 @@ export const saveConfig = () => {
         }
     }
 
+    saveConfigToChromeStorage(configToSave)
+}
+
+export const restoreDefaults = () => {
+    saveConfigToChromeStorage(DEFAULT_CONFIG)
+    restoreConfig()
+}
+
+const saveConfigToChromeStorage = (configToSave: IThinkclientConfig) => {
     const toSave = {
         [STORAGE_KEY]: JSON.stringify(configToSave)
     }
@@ -140,4 +149,5 @@ const getInputElement = (elementId: string) : HTMLInputElement => {
 document.addEventListener('DOMContentLoaded', () => {
     restoreConfig()
     document.getElementById('save-btn').addEventListener('click', saveConfig)
+    document.getElementById('restore-defaults-btn').addEventListener('click', restoreDefaults)
 })
