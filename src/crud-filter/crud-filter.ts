@@ -1,18 +1,28 @@
+import * as $ from 'jquery'
 import {getNewsFeed} from '../dom-helper/dom-helper'
 
 const STORY_ID_PREFIX = 'hyperfeed_story_id_'
 
 
 const hideStoriesIn = (root: JQuery, blacklist: string[]) => {
-    const stories = root.find(`div.fbUserContent`)
-    for (let blacklist_str of blacklist) {
-        const matchingStories = stories.filter(`:contains('${blacklist_str}')`)
-        if (matchingStories.length > 0) {
-            console.info(`Hiding ${matchingStories.length} stories matching ${blacklist_str}`)
-        }
-        matchingStories.css('opacity', '0.3')
+    const regexp: RegExp = new RegExp(`\\b(?:${blacklist.join('|')})\\b`, 'i')
+    console.info(`Searching for regex: ${regexp}`)
+    const stories = root.find(`div.fbUserPost`)
+    console.info(`Found ${stories.length} stories on the page`)
+    const matchingStories = stories
+        .filter((i: number, element: Element) => {
+            const allText = $(element).text()
+            console.log(`Element's text is "${allText}"`)
+            const match = $(element).text().match(regexp)
+            return match !== null
+        })
+
+    if (matchingStories.length > 0) {
+        console.info(`Hiding ${matchingStories.length} stories containing blacklisted words`)
     }
+    matchingStories.css('opacity', '0.3')
 }
+
 
 export const hideAllPosts = (blacklist: string[]) => {
     const newsFeed = getNewsFeed()
