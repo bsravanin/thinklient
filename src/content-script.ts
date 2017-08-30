@@ -1,4 +1,4 @@
-import {hideAllPosts} from './crud-filter/crud-filter'
+import {hidePostsWithBlacklistedWords} from './crud-filter/crud-filter'
 import {enableDiscard} from './encourage-discard/encourage-discard'
 import {updateQuote} from './random-quote/random-quote'
 import {enableUndoPost} from './undo-post/undo-post'
@@ -12,7 +12,7 @@ class Startup {
             const features = config.features
             const {crudFilter, encourageDiscard, randomQuotes, undoPost} = features
             if (crudFilter.isEnabled) {
-                hideAllPosts(crudFilter.blacklist)
+                hidePostsWithBlacklistedWords(crudFilter.blacklist)
             }
 
             if (encourageDiscard.isEnabled)  {

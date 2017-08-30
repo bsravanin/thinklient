@@ -24,7 +24,7 @@ const hideStoriesIn = (root: JQuery, blacklist: string[]) => {
 }
 
 
-export const hideAllPosts = (blacklist: string[]) => {
+export const hidePostsWithBlacklistedWords = (blacklist: string[]) => {
     const newsFeed = getNewsFeed()
     console.info(newsFeed)
 
