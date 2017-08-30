@@ -28,7 +28,7 @@ export const hidePostsWithBlacklistedWords = (blacklist: string[]) => {
     const newsFeed = getNewsFeed()
     console.info(newsFeed)
 
-    const observer = new MutationObserver(function(mutations, observer) {
+    const observer = new MutationObserver((mutations) => {
         // console.log(mutations, observer);
         for (let mutationRecord of mutations) {
             if (mutationRecord.target) {
