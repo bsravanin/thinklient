@@ -1,51 +1,54 @@
 import * as $ from 'jquery'
-import {getNewsFeed} from '../dom-helper/dom-helper'
+import {waitForNewsFeed, waitForPagingParent, waitForSubstream, waitForElement} from '../dom-helper/dom-helper'
 
-const STORY_ID_PREFIX = 'hyperfeed_story_id_'
+const STORY_SELECTOR = 'div[data-testid="fbfeed_story"]'
 
-
-const hideStoriesIn = (root: JQuery, blacklist: string[]) => {
-    const regexp: RegExp = new RegExp(`\\b(?:${blacklist.join('|')})\\b`, 'i')
-    console.info(`Searching for regex: ${regexp}`)
-    const stories = root.find(`div.fbUserPost`)
+const hideMatchingStoriesIn = (root: Node, regexp: RegExp) => {
+    const stories = $(root).find(STORY_SELECTOR)
     console.info(`Found ${stories.length} stories on the page`)
+    hideMatchingStories(stories, regexp)
+}
+
+const hideMatchingStories = (stories: JQuery, regexp: RegExp) => {
     const matchingStories = stories
         .filter((i: number, element: Element) => {
             const allText = $(element).text()
-            console.log(`Element's text is "${allText}"`)
             const match = $(element).text().match(regexp)
             return match !== null
         })
 
     if (matchingStories.length > 0) {
         console.info(`Hiding ${matchingStories.length} stories containing blacklisted words`)
+        hideElements(matchingStories)
     }
-    matchingStories.css('opacity', '0.3')
 }
 
+const hideElements = (elements: JQuery) => {
+    elements.css('opacity', '0.3')
+}
 
-export const hidePostsWithBlacklistedWords = (blacklist: string[]) => {
-    const newsFeed = getNewsFeed()
-    console.info(newsFeed)
+export const hidePostsWithBlacklistedWords = async (blacklist: string[]) => {
+    const regexp: RegExp = new RegExp(`\\b(?:${blacklist.join('|')})\\b`, 'i')
+    const newsFeed = await waitForNewsFeed()
+    const pagingParent = await waitForPagingParent(newsFeed)
+    const firstSubstream = await waitForSubstream(pagingParent)
+    const substreamsParent = firstSubstream.parentNode;
 
     const observer = new MutationObserver((mutations) => {
-        // console.log(mutations, observer);
         for (let mutationRecord of mutations) {
-            if (mutationRecord.target) {
-                const targetId = mutationRecord.target.attributes.getNamedItem('id')
-                console.info('Has target!')
-                if (targetId && targetId.value.startsWith(STORY_ID_PREFIX)) {
-                    console.log('Got a story mutation!')
-                    hideStoriesIn(newsFeed, blacklist)
+            if (mutationRecord.addedNodes.length > 0) {
+                const story = $(mutationRecord.target).filter(STORY_SELECTOR)
+                if (story.length > 0) {
+                    hideMatchingStories(story, regexp)
                 }
             }
         }
     });
 
-    observer.observe(newsFeed.get(0), {
+    observer.observe(substreamsParent, {
         childList: true,
         subtree: true,
     });
 
-    hideStoriesIn(newsFeed, blacklist)
+    hideMatchingStoriesIn(newsFeed, regexp)
 }

@@ -1,4 +1,4 @@
-import {getPlaceHolders, getNewsFeed} from '../dom-helper/dom-helper'
+import {getPlaceHolders, waitForNewsFeed} from '../dom-helper/dom-helper'
 
 const quotes: string[] = [
     'Sometimes I find it sufficient to articulate and discard a thought without posting.',
@@ -35,15 +35,15 @@ const updateQuoteInPlaceHolders = () => {
     }
 }
 
-export const updateQuote = () => {
-    const newsFeed = getNewsFeed()
+export const updateQuote = async () => {
+    const newsFeed = await waitForNewsFeed()
     updateQuoteInPlaceHolders()
 
     let observer = new MutationObserver(function () {
         updateQuoteInPlaceHolders()
     })
 
-    observer.observe(newsFeed.get(0), {
+    observer.observe(newsFeed, {
         childList: true,
         subtree: true
     })
