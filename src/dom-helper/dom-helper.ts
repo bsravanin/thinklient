@@ -56,7 +56,7 @@ export const waitForElement = (root: Node, selector: string): Promise<Node> => {
     })
 }
 
-export const getPostButton = () => {
+export const getPostButton = (): HTMLElement | undefined => {
     const postBoxes = getPostBoxes()
     if (postBoxes.length != 1) {
         console.error('DOM parsing failed. Could not locate the post box.')
@@ -71,4 +71,5 @@ export const getPostButton = () => {
             }
         }
     }
+    return
 }

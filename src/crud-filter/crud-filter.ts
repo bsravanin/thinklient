@@ -33,6 +33,10 @@ export const hidePostsWithBlacklistedWords = async (blacklist: string[]) => {
     const pagingParent = await waitForPagingParent(newsFeed)
     const firstSubstream = await waitForSubstream(pagingParent)
     const substreamsParent = firstSubstream.parentNode;
+    if (!substreamsParent) {
+        console.error("Failed to find substream parent. Crud filter disabled!")
+        return
+    }
 
     const observer = new MutationObserver((mutations) => {
         for (let mutationRecord of mutations) {

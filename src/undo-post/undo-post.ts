@@ -18,7 +18,6 @@ export const enableUndoPost = (timeout: number) => {
                 if (postButton) {
                     console.log('Changing onclick logic.')
                     const postOnClick = postButton.onclick
-                    postButton.onclick = null
                     $(postButton).click(async function (e) {
                         console.log('Intercepting post.')
                         await sleep(timeout * 1000);

@@ -113,7 +113,7 @@ const saveConfigToChromeStorage = (configToSave: IThinkclientConfig) => {
 
     console.log('Saving: ', toSave)
     chrome.storage.sync.set(toSave, function() {
-        var status = document.getElementById('status')
+        const status = document.getElementById('status') as HTMLElement
         status.textContent = 'Options saved.'
         setTimeout(function() {
             status.textContent = ''
@@ -148,6 +148,9 @@ const getInputElement = (elementId: string) : HTMLInputElement => {
 
 document.addEventListener('DOMContentLoaded', () => {
     restoreConfig()
-    document.getElementById('save-btn').addEventListener('click', saveConfig)
-    document.getElementById('restore-defaults-btn').addEventListener('click', restoreDefaults)
+    const saveButton = document.getElementById('save-btn') as HTMLElement
+    saveButton.addEventListener('click', saveConfig)
+    const restoreButton = document.getElementById('restore-defaults-btn') as HTMLElement
+    restoreButton.addEventListener('click', restoreDefaults)
+
 })
