@@ -18,6 +18,9 @@ interface IThinkclientConfig {
             isEnabled: boolean
             timeout: number
         }
+        hideReactions: {
+            isEnabled: boolean
+        }
     }
 }
 
@@ -36,6 +39,9 @@ const DEFAULT_CONFIG: IThinkclientConfig = {
         undoPost: {
             isEnabled: false,
             timeout: 30
+        },
+        hideReactions: {
+            isEnabled: false
         }
     }
 }
@@ -79,6 +85,10 @@ export const saveConfig = () => {
     const undoPostTimeoutInput = getInputElement('undo-post-timeout')
     const undoPostTimeout = Number(undoPostTimeoutInput.value)
 
+    // hideReactions
+    const hideReactionsCheckbox = getInputElement('hide-reactions')
+    const hideReactionsIsEnabled = hideReactionsCheckbox.checked
+
     const configToSave : IThinkclientConfig = {
         features: {
             crudFilter: {
@@ -94,6 +104,9 @@ export const saveConfig = () => {
             undoPost: {
                 isEnabled: undoPostIsEnabled,
                 timeout: undoPostTimeout
+            },
+            hideReactions: {
+                isEnabled: hideReactionsIsEnabled
             }
         }
     }
@@ -139,6 +152,9 @@ const restoreConfig = () => {
         // undoPost
         getInputElement('undo-post').checked = features.undoPost.isEnabled
         getInputElement('undo-post-timeout').value = String(features.undoPost.timeout)
+
+        // hideReactions
+        getInputElement('hide-reactions').checked = features.hideReactions.isEnabled
     })
 }
 

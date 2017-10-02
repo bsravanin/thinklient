@@ -3,6 +3,7 @@ import {enableDiscard} from './encourage-discard/encourage-discard'
 import {updateQuote} from './random-quote/random-quote'
 import {enableUndoPost} from './undo-post/undo-post'
 import {getSavedConfig} from './options/options'
+import {hideSocialCounts} from './hide-reactions/hide-reactions'
 
 class Startup {
     public static main(): number {
@@ -10,7 +11,7 @@ class Startup {
 
         getSavedConfig().then(config => {
             const features = config.features
-            const {crudFilter, encourageDiscard, randomQuotes, undoPost} = features
+            const {crudFilter, encourageDiscard, randomQuotes, undoPost, hideReactions} = features
             if (crudFilter.isEnabled) {
                 hidePostsWithBlacklistedWords(crudFilter.blacklist)
             }
@@ -25,6 +26,10 @@ class Startup {
 
             if (undoPost.isEnabled && undoPost.timeout > 0) {
                 enableUndoPost(undoPost.timeout)
+            }
+
+            if (hideReactions.isEnabled) {
+                hideSocialCounts();
             }
         })
 

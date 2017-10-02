@@ -8,6 +8,14 @@ export const getPostBoxes = () => {
     return document.querySelectorAll('[aria-label="Create a post"]')
 }
 
+export const getReactionSpans = () => {
+    return document.querySelectorAll('[aria-label="See who reacted to this"]')
+}
+
+export const getShareCountRows = () => {
+    return document.querySelectorAll('.UFIShareRow')
+}
+
 export const waitForNewsFeed = async (): Promise<Node> => {
     return await waitForElement(document, "div[id^='feed_stream_']")
 }
